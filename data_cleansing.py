@@ -3,7 +3,7 @@ import os
 
 # read csv dataset
 # TODO: to remove nrows=1000 in final execution
-accident_data = pd.read_csv("US_Accidents_Dec20_updated.csv", nrows=1000)
+accident_data = pd.read_csv("US_Accidents_Dec21_updated.csv")
 
 # Accident dataframe
 accident = accident_data[
@@ -72,6 +72,16 @@ def deleteExistingCSV():
     if os.path.exists('location_property.csv'):
         os.remove('location_property.csv')
 
+# Function for dropping the specified row from all dataframes
+def dropRowFromDFs(rowIndex):
+    global accident, accident_location, address, weather, location_property
+
+    accident = accident.drop([rowIndex]).reset_index(drop=True)
+    accident_location = accident_location.drop([rowIndex]).reset_index(drop=True)
+    address = address.drop([rowIndex]).reset_index(drop=True)
+    weather = weather.drop([rowIndex]).reset_index(drop=True)
+    location_property = location_property.drop([rowIndex]).reset_index(drop=True)
+
 def main():
     # remove all existing individual csv files
     deleteExistingCSV()
@@ -81,28 +91,37 @@ def main():
         To traverse all tuples and perform data cleansing/validation 
     '''
     # TODO: replace value 10 to len(accident_data.index) for actual execution
-    for rowIndex in range(len(accident_data.index)):
+    rowIndex = 0
+    DFLength = len(accident_data.index)
+    while rowIndex < DFLength:
+        # print("Reading index {0}".format(rowIndex))
 
         '''
         a. Data cleansing/validation for Accident dataframe:
-            - Skip row if Start_Time is null 
-            - Skip row if End_Time is null
+            - Drop row if Start_Time is null 
+            - Drop row if End_Time is null
         '''
         if accident.iloc[[rowIndex]]["Start_Time"].isnull().values.any() or \
                 accident.iloc[[rowIndex]]["End_Time"].isnull().values.any():
+            # print("Dropping index {0}!".format(rowIndex))
+            dropRowFromDFs(rowIndex)
+            DFLength -= 1
             continue
 
         '''
         b. Data cleansing/validation for Accident Location dataframe:
-            - Skip row if Start_Lat is null 
-            - Skip row if Start_Lng is null
-            - Skip row if End_Lat is null
-            - Skip row if End_Lng is null 
+            - Drop row if Start_Lat is null 
+            - Drop row if Start_Lng is null
+            - Drop row if End_Lat is null
+            - Drop row if End_Lng is null 
         '''
         if accident_location.iloc[[rowIndex]]["Start_Lat"].isnull().values.any() or \
                 accident_location.iloc[[rowIndex]]["Start_Lng"].isnull().values.any() or \
                 accident_location.iloc[[rowIndex]]["End_Lat"].isnull().values.any() or \
                 accident_location.iloc[[rowIndex]]["End_Lng"].isnull().values.any():
+            # print("Dropping index {0}!".format(rowIndex))
+            dropRowFromDFs(rowIndex)
+            DFLength -= 1
             continue
 
         # Insert foreign key Address_ID from Address table
@@ -110,10 +129,13 @@ def main():
 
         '''
         c. Data cleansing/validation for Address dataframe
-            - Skip row if zipcode is null
+            - Drop row if zipcode is null
             - Remove tailing digits after "-", if exist
         '''
         if address.iloc[[rowIndex]]["Zipcode"].isnull().values.any():
+            # print("Dropping index {0}!".format(rowIndex))
+            dropRowFromDFs(rowIndex)
+            DFLength -= 1
             continue
 
         # Remove tailing digits after "-", if exist
@@ -130,9 +152,12 @@ def main():
 
         '''
         d. Data cleansing/validation for Weather dataframe:
-            - Skip row if Weather_Condition is null 
+            - Drop row if Weather_Condition is null 
         '''
         if weather.iloc[[rowIndex]]["Weather_Condition"].isnull().values.any():
+            # print("Dropping index {0}!".format(rowIndex))
+            dropRowFromDFs(rowIndex)
+            DFLength -= 1
             continue
 
         # Insert primary key Weather_ID for Weather table
@@ -143,24 +168,32 @@ def main():
         # Insert primary key Location_Property_ID for Location_Property table
         location_property.at[rowIndex, "Location_Property_ID"] = rowIndex
 
-        ''' 
-        2. Storage of Cleansed/Validated data 
-        Append cleansed/validated row into respective csv file
-        '''
-        # Append row to accident.csv
-        appendRowToCSV('accident.csv', accident, rowIndex)
+        # Increment rowIndex
+        rowIndex += 1
 
-        # Append row to accident_location.csv
-        appendRowToCSV('accident_location.csv', accident_location, rowIndex)
+    ''' 
+    2. Storage of Cleansed/Validated data 
+    Append cleansed/validated row into respective csv file
+    '''
+    # Append row to accident.csv
+    # appendRowToCSV('accident.csv', accident, rowIndex)
+    accident.to_csv('accident.csv', index=False)
 
-        # Append row to address.csv
-        appendRowToCSV('address.csv', address, rowIndex)
+    # Append row to accident_location.csv
+    # appendRowToCSV('accident_location.csv', accident_location, rowIndex)
+    accident_location.to_csv('accident_location.csv', index=False)
 
-        # Append row to weather.csv
-        appendRowToCSV('weather.csv', weather, rowIndex)
+    # Append row to address.csv
+    # appendRowToCSV('address.csv', address, rowIndex)
+    address.to_csv('address.csv', index=False)
 
-        # Append row to location_property.csv
-        appendRowToCSV('location_property.csv', location_property, rowIndex)
+    # Append row to weather.csv
+    # appendRowToCSV('weather.csv', weather, rowIndex)
+    weather.to_csv('weather.csv', index=False)
+
+    # Append row to location_property.csv
+    # appendRowToCSV('location_property.csv', location_property, rowIndex)
+    location_property.to_csv('location_property.csv', index=False)
 
 
 if __name__ == "__main__":

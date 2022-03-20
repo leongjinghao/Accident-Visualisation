@@ -3,22 +3,19 @@ import os
 
 # read csv dataset
 # TODO: to remove nrows=10 in final execution
-accident_data = pd.read_csv("US_Accidents_Dec20_updated.csv", nrows=10)
+accident_data = pd.read_csv("US_Accidents_Dec20_updated.csv")
 
 # Accident dataframe
-# TODO: to include fk fields programmatically
 accident = accident_data[
     ["ID", "Severity", "Start_Time", "End_Time", "Description"]]
 
 # Accident Location dataframe
-# TODO: to include fk fields programmatically
 accident_location = accident_data[
     ["ID", "Start_Lat", "Start_Lng", "End_Lat", "End_Lng", "Distance(mi)"]]
 # Insert foreign key Address_ID from Address table
 accident_location.insert(loc=6, column='Address_ID', value="")
 
 # Address dataframe
-# TODO: to include pk & fk fields programmatically
 address = accident_data[
     ["Number", "Street", "Side", "City", "County", "State", "Zipcode", "Country", "Timezone", "Airport_Code"]]
 # Insert primary key Address_ID for Address table
@@ -28,7 +25,6 @@ address.insert(loc=11, column='Location_ID', value="")
 address.insert(loc=12, column='Weather_ID', value="")
 
 # Weather dataframe
-# TODO: to include pk & fk fields programmatically
 weather = accident_data[
     ["Weather_Timestamp", "Temperature(F)", "Wind_Chill(F)", "Humidity(%)", "Pressure(in)", "Visibility(mi)",
      "Wind_Direction", "Wind_Speed(mph)", "Precipitation(in)", "Weather_Condition"]]
@@ -82,25 +78,48 @@ def main():
 
     '''
     1. Data Cleansing/Validation Process:
-    To traverse all tuples 
+        To traverse all tuples and perform data cleansing/validation 
     '''
     # TODO: replace value 10 to len(accident_data.index) for actual execution
     for rowIndex in range(len(accident_data.index)):
-        # testing: print out all tuples
-        # print(accident_data.iloc[[rowIndex]])
 
-        # TODO: data cleansing for Accident dataframe
-        # Skip row if Start_Time or End_Time is null
+        '''
+        a. Data cleansing/validation for Accident dataframe:
+            - Skip row if Start_Time is null 
+            - Skip row if End_Time is null
+        '''
         if accident.iloc[[rowIndex]]["Start_Time"].isnull().values.any() or \
                 accident.iloc[[rowIndex]]["End_Time"].isnull().values.any():
             continue
 
-        # TODO: data cleansing for Accident Location dataframe
+        '''
+        b. Data cleansing/validation for Accident Location dataframe:
+            - Skip row if Start_Lat is null 
+            - Skip row if Start_Lng is null
+            - Skip row if End_Lat is null
+            - Skip row if End_Lng is null 
+        '''
+        if accident_location.iloc[[rowIndex]]["Start_Lat"].isnull().values.any() or \
+                accident_location.iloc[[rowIndex]]["Start_Lng"].isnull().values.any() or \
+                accident_location.iloc[[rowIndex]]["End_Lat"].isnull().values.any() or \
+                accident_location.iloc[[rowIndex]]["End_Lng"].isnull().values.any():
+            continue
 
         # Insert foreign key Address_ID from Address table
         accident_location.at[rowIndex, "Address_ID"] = rowIndex
 
-        # TODO: data cleansing for Address dataframe
+        '''
+        c. Data cleansing/validation for Address dataframe
+            - Skip row if zipcode is null
+            - Remove tailing digits after "-", if exist
+        '''
+        if address.iloc[[rowIndex]]["Zipcode"].isnull().values.any():
+            continue
+
+        # Remove tailing digits after "-", if exist
+        zipcode = address.iloc[[rowIndex]]["Zipcode"].item()
+        head, sep, tail = zipcode.partition('-')
+        address.at[rowIndex, "Zipcode"] = head
 
         # Insert primary key Address_ID for Address table
         address.at[rowIndex, "Address_ID"] = rowIndex
@@ -109,14 +128,17 @@ def main():
         address.at[rowIndex, "Location_ID"] = rowIndex
         address.at[rowIndex, "Weather_ID"] = rowIndex
 
-        # TODO: data cleansing for Weather
+        '''
+        d. Data cleansing/validation for Weather dataframe:
+            - Skip row if Weather_Condition is null 
+        '''
         if weather.iloc[[rowIndex]]["Weather_Condition"].isnull().values.any():
             continue
 
         # Insert primary key Weather_ID for Weather table
         weather.at[rowIndex, "Weather_ID"] = rowIndex
 
-        # TODO: data cleansing for Location Property dataframe
+        # TODO: e. Data cleansing/validation for Location Property dataframe
 
         # Insert primary key Location_Property_ID for Location_Property table
         location_property.at[rowIndex, "Location_Property_ID"] = rowIndex

@@ -3,7 +3,7 @@ import os
 
 # read csv dataset
 # TODO: to remove nrows=1000 in final execution
-accident_data = pd.read_csv("US_Accidents_Dec21_updated.csv")
+accident_data = pd.read_csv("US_Accidents_Dec21_updated.csv", nrows=1000)
 
 # Accident dataframe
 accident = accident_data[

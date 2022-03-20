@@ -2,8 +2,8 @@ import pandas as pd
 import os
 
 # read csv dataset
-# TODO: to remove nrows=10 in final execution
-accident_data = pd.read_csv("US_Accidents_Dec20_updated.csv")
+# TODO: to remove nrows=1000 in final execution
+accident_data = pd.read_csv("US_Accidents_Dec20_updated.csv", nrows=1000)
 
 # Accident dataframe
 accident = accident_data[

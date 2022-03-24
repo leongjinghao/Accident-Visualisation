@@ -3,7 +3,7 @@ import os
 
 # read csv dataset
 # TODO: to remove nrows=1000 in final execution
-accident_data = pd.read_csv("US_Accidents_Dec21_updated.csv", nrows=1000)
+accident_data = pd.read_csv("US_Accidents_Dec21_updated.csv", nrows=10000)
 
 # Accident dataframe
 accident = accident_data[
@@ -96,6 +96,10 @@ def main():
     while rowIndex < DFLength:
         # print("Reading index {0}".format(rowIndex))
 
+        # print current row at every 10000 row interval to check progress
+        # if rowIndex % 10000 == 0:
+        #     print("Now at {0}".format(rowIndex))
+
         '''
         a. Data cleansing/validation for Accident dataframe:
             - Drop row if Start_Time is null 
@@ -130,9 +134,13 @@ def main():
         '''
         c. Data cleansing/validation for Address dataframe
             - Drop row if zipcode is null
+            - Drop row if state is null
+            - Drop row if city is null
             - Remove tailing digits after "-", if exist
         '''
-        if address.iloc[[rowIndex]]["Zipcode"].isnull().values.any():
+        if address.iloc[[rowIndex]]["Zipcode"].isnull().values.any() or \
+                address.iloc[[rowIndex]]["State"].isnull().values.any() or \
+                address.iloc[[rowIndex]]["City"].isnull().values.any():
             # print("Dropping index {0}!".format(rowIndex))
             dropRowFromDFs(rowIndex)
             DFLength -= 1
@@ -163,7 +171,39 @@ def main():
         # Insert primary key Weather_ID for Weather table
         weather.at[rowIndex, "Weather_ID"] = rowIndex
 
-        # TODO: e. Data cleansing/validation for Location Property dataframe
+        '''
+        e. Data cleansing/validation for Location Property dataframe
+            - Drop row if Amenity is null 
+            - Drop row if Bump is null
+            - Drop row if Crossing is null
+            - Drop row if Give_Way is null 
+            - Drop row if Junction is null 
+            - Drop row if No_Exit is null
+            - Drop row if Railway is null
+            - Drop row if Roundabout is null 
+            - Drop row if Station is null 
+            - Drop row if Stop is null
+            - Drop row if Traffic_Calming is null
+            - Drop row if Traffic_Signal is null
+            - Drop row if Turning_Loop is null  
+        '''
+        if location_property.iloc[[rowIndex]]["Amenity"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Bump"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Crossing"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Give_Way"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Junction"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["No_Exit"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Railway"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Roundabout"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Station"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Stop"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Traffic_Calming"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Traffic_Signal"].isnull().values.any() or \
+                location_property.iloc[[rowIndex]]["Turning_Loop"].isnull().values.any():
+            # print("Dropping index {0}!".format(rowIndex))
+            dropRowFromDFs(rowIndex)
+            DFLength -= 1
+            continue
 
         # Insert primary key Location_Property_ID for Location_Property table
         location_property.at[rowIndex, "Location_Property_ID"] = rowIndex
@@ -177,23 +217,23 @@ def main():
     '''
     # Append row to accident.csv
     # appendRowToCSV('accident.csv', accident, rowIndex)
-    accident.to_csv('accident.csv', index=False)
+    accident.to_csv('dataframe_csv/accident.csv', index=False)
 
     # Append row to accident_location.csv
     # appendRowToCSV('accident_location.csv', accident_location, rowIndex)
-    accident_location.to_csv('accident_location.csv', index=False)
+    accident_location.to_csv('dataframe_csv/accident_location.csv', index=False)
 
     # Append row to address.csv
     # appendRowToCSV('address.csv', address, rowIndex)
-    address.to_csv('address.csv', index=False)
+    address.to_csv('dataframe_csv/address.csv', index=False)
 
     # Append row to weather.csv
     # appendRowToCSV('weather.csv', weather, rowIndex)
-    weather.to_csv('weather.csv', index=False)
+    weather.to_csv('dataframe_csv/weather.csv', index=False)
 
     # Append row to location_property.csv
     # appendRowToCSV('location_property.csv', location_property, rowIndex)
-    location_property.to_csv('location_property.csv', index=False)
+    location_property.to_csv('dataframe_csv/location_property.csv', index=False)
 
 
 if __name__ == "__main__":

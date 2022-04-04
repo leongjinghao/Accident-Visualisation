@@ -4,6 +4,7 @@ using WebAPI.Models;
 using WebAPI.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace WebAPI.Repositories
 {
@@ -16,8 +17,10 @@ namespace WebAPI.Repositories
 
         }
     
-        public async Task<IEnumerable<Address>> GetAllAddress() {
-            return await _context.address.ToListAsync();
+        public async Task<List<StateCountModel>> GetAllAddress() {
+            return _context.address.GroupBy(a => a.state)
+                .Select(x => new StateCountModel { State = x.Key, Freq = x.Count() })
+                .ToList();
         }
     }
 }

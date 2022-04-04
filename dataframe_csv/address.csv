@@ -1,4 +1,4 @@
-Address_ID,Number,Street,Side,City,County,State,Zipcode,Country,Timezone,Airport_Code,Location_ID,Weather_ID
+Address_ID,Number,Street,Side,City,County,State,Zipcode,Country,Timezone,Airport_Code,Location_Property_ID,Weather_ID
 0,,Outerbelt E,R,Dublin,Franklin,OH,43017,US,US/Eastern,KOSU,0,0
 1,,I-70 E,R,Dayton,Montgomery,OH,45424,US,US/Eastern,KFFO,1,1
 2,,I-75 S,R,Cincinnati,Hamilton,OH,45203,US,US/Eastern,KLUK,2,2

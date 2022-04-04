@@ -20,8 +20,8 @@ address = accident_data[
     ["Number", "Street", "Side", "City", "County", "State", "Zipcode", "Country", "Timezone", "Airport_Code"]]
 # Insert primary key Address_ID for Address table
 address.insert(loc=0, column='Address_ID', value="")
-# Insert foreign key Location_ID and Weather_ID for Location_Property and Weather table
-address.insert(loc=11, column='Location_ID', value="")
+# Insert foreign key Location_Property_ID and Weather_ID for Location_Property and Weather table
+address.insert(loc=11, column='Location_Property_ID', value="")
 address.insert(loc=12, column='Weather_ID', value="")
 
 # Weather dataframe
@@ -154,8 +154,8 @@ def main():
         # Insert primary key Address_ID for Address table
         address.at[rowIndex, "Address_ID"] = rowIndex
 
-        # Insert foreign key Location_ID and Weather_ID for Location_Property and Weather table
-        address.at[rowIndex, "Location_ID"] = rowIndex
+        # Insert foreign key Location_Property_ID and Weather_ID for Location_Property and Weather table
+        address.at[rowIndex, "Location_Property_ID"] = rowIndex
         address.at[rowIndex, "Weather_ID"] = rowIndex
 
         '''

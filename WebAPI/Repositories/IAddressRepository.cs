@@ -9,6 +9,6 @@ namespace WebAPI.Repositories
     {
         Task<List<StateCountModel>> GetAllAddress();
 
-        Task<List<County>> GetCountyByState(string state);
+        Task<List<CountyCountModel>> GetCountyByState(string state);
     }
 }

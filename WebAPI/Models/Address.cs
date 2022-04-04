@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebAPI.Models
 {
-    public class address
+    public class Address
     {
         [Key]
         public int address_id { get; set; }

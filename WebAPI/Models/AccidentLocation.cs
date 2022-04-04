@@ -6,11 +6,11 @@ namespace WebAPI.Models
     {
         [Key]
         public string id { get; set; }
-        public float? start_lat { get; set; }
-        public float? start_lng { get; set; }
-        public float? end_lat { get; set; }
-        public float? end_lng { get; set; }
-        public float? distance { get; set; }
+        public double? start_lat { get; set; }
+        public double? start_lng { get; set; }
+        public double? end_lat { get; set; }
+        public double? end_lng { get; set; }
+        public double? distance { get; set; }
         public int address_id { get; set; }
     }
 }

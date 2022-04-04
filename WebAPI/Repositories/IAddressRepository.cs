@@ -8,5 +8,7 @@ namespace WebAPI.Repositories
     public interface IAddressRepository
     {
         Task<List<StateCountModel>> GetAllAddress();
+
+        Task<List<County>> GetCountyByState(string state);
     }
 }

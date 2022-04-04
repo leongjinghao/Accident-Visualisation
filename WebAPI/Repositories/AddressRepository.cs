@@ -22,5 +22,11 @@ namespace WebAPI.Repositories
                 .Select(x => new StateCountModel { State = x.Key, Freq = x.Count() })
                 .ToList();
         }
+
+        public async Task<List<County>> GetCountyByState(string state) {
+            return _context.address.Where(a => a.state == state).GroupBy(t => t.county)
+                .Select(x => new County { county = x.Key, frequency = x.Count() })
+                .ToList();
+        }
     }
 }

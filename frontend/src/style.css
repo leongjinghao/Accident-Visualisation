@@ -1,0 +1,111 @@
+.pagewrapper {
+  display: flex;
+  background-color: #9cbbc1;
+}
+
+.sidebar {
+  background-color: #004753;
+  width: 13vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebarbutton {
+  display: flex;
+  align-items: center;
+  background-color: #004753;
+  margin: 0px 10px 0px 10px;
+  border-radius: 4px;
+}
+
+.sidebartop {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-evenly;
+}
+
+.topwrapper {
+  display: flex;
+  width: 87vw;
+  justify-content: space-evenly;
+}
+
+.bottomwrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageTitle {
+  color: #ed7d31;
+  margin: 15px;
+  font-weight: bolder;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.propertycard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 7.5vw;
+  height: 12vh;
+}
+
+.box2 {
+  background-color: rgba(237, 125, 49, 0.5);
+  color: #004653;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 8vw;
+  height: 16vh;
+}
+
+.textStyle {
+  color: #004753;
+  font-weight: bolder;
+  font-size: 22px;
+}
+
+.propertyGrid {
+  display: flex;
+  flex-direction: column;
+  width: 32vw;
+  height: 40vh;
+}
+
+.propertyRow {
+  display: flex;
+  flex: 1;
+}
+
+.propertyBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textDetails {
+  color: #ed7d31;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}

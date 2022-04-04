@@ -34,6 +34,7 @@ namespace WebAPI
             services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAccidentLocationRepository, AccidentLocationRepository>();
+            services.AddScoped<IAccidentRepository, AccidentRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

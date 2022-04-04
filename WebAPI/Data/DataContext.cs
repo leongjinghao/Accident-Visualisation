@@ -10,10 +10,10 @@ namespace WebAPI.Data
              
         }
         
-        public DbSet<Accident> Accident { get; init; }
-        public DbSet<AccidentLocation> AccidentLocation { get; init; }
-        public DbSet<Address> Address { get; init; }
-        public DbSet<LocationProperty> LocationProperty { get; init; }
-        public DbSet<Weather> Weather { get; init; }
+        public DbSet<Accident> accident { get; init; }
+        public DbSet<AccidentLocation> accident_location { get; init; }
+        public DbSet<Address> address { get; init; }
+        public DbSet<LocationProperty> location_property { get; init; }
+        public DbSet<Weather> weather { get; init; }
     }
 }

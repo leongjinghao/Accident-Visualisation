@@ -7,11 +7,11 @@ namespace WebAPI.Data
 {
     public interface IDataContext
     {
-        DbSet<Accident> Accident { get; init; }
-        DbSet<AccidentLocation> AccidentLocation { get; init; }
-        DbSet<Address> Address { get; init; }
-        DbSet<LocationProperty> LocationProperty { get; init; }
-        DbSet<Weather> Weather { get; init; }
+        DbSet<Accident> accident { get; init; }
+        DbSet<AccidentLocation> accident_location { get; init; }
+        DbSet<Address> address { get; init; }
+        DbSet<LocationProperty> location_property { get; init; }
+        DbSet<Weather> weather { get; init; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

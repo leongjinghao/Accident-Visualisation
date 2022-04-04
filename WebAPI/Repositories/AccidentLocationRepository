@@ -1,0 +1,25 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using WebAPI.Models;
+using WebAPI.Data;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
+namespace WebAPI.Repositories
+{
+    public class AccidentLocation: IAccidentLocationRepository
+    {
+        private readonly IDataContext _context;
+
+        public AccidentLocation(IDataContext context)
+        {
+            _context = context;
+
+        }
+
+        public async Task<IEnumerable<AccidentLocation>> GetAccidentLocation(){
+            return await _context.accidentlocation.ToListAsync();
+        }
+    
+    }
+}

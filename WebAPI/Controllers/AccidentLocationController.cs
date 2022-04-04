@@ -1,20 +1,35 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using WebAPI.Models;
+using WebAPI.Data;
+using WebAPI.Repositories;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebAPI.Controllers{
+namespace WebAPI.Controllers
+{
 
 [ApiController]
 [Route("[accidentlocation]")]
-    public class AccidentLocaltionController : ControllerBase{
+    public class AccidentLocationController : ControllerBase
+    {
 
-        [HttpGet("{state_name}")]
-        public stateName<AccidentLocation> Get()
+        private readonly IAccidentLocationRepository _accidentLocRepository;
+
+        public AccidentLocationController(IAccidentLocationRepository accidentLocRepository)
         {
-            
+            _accidentLocRepository = accidentLocRepository;
+        }
+
+        // [HttpGet("{state_name}")]
+        [HttpGet]
+        public async Task<IEnumerable<AccidentLocation>> GetAccidentLocation()
+        {
+            var accident = await _accidentLocRepository.GetAccidents();
+
+            return Ok(accident);
         }
 
 

@@ -33,6 +33,7 @@ namespace WebAPI
             services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IAccidentLocationRepository, AccidentLocationRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

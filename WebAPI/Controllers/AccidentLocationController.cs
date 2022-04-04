@@ -10,9 +10,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Controllers
 {
-
-[ApiController]
-[Route("[accidentlocation]")]
+    [ApiController]
+    [Route("[controller]")]
     public class AccidentLocationController : ControllerBase
     {
 
@@ -23,9 +22,8 @@ namespace WebAPI.Controllers
             _accidentLocRepository = accidentLocRepository;
         }
 
-        // [HttpGet("{state_name}")]
         [HttpGet]
-        public async Task<IEnumerable<AccidentLocation>> GetAccidentLocation()
+        public async Task<ActionResult<IEnumerable<AccidentLocation>>> GetAccidentLocation()
         {
             var accident = await _accidentLocRepository.GetAccidents();
 
@@ -34,7 +32,5 @@ namespace WebAPI.Controllers
 
 
     }
-
-
 
 }

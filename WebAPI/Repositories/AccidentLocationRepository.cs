@@ -7,18 +7,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Repositories
 {
-    public class AccidentLocation: IAccidentLocationRepository
+    public class AccidentLocationRepository: IAccidentLocationRepository
     {
         private readonly IDataContext _context;
-
-        public AccidentLocation(IDataContext context)
+        public AccidentLocationRepository(IDataContext context)
         {
             _context = context;
 
         }
 
-        public async Task<IEnumerable<AccidentLocation>> GetAccidentLocation(){
-            return await _context.accidentlocation.ToListAsync();
+        public async Task<IEnumerable<AccidentLocation>> GetAccidents(){
+            return await _context.accident_location.ToListAsync();
         }
     
     }

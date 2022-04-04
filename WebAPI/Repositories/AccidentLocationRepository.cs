@@ -16,14 +16,31 @@ namespace WebAPI.Repositories
 
         }
 
-        public async Task<IEnumerable<AccidentLocation>> GetAccidents(string state){
+        public async Task<List<AccidentDimensionModel>> GetAccidents(string state){
             // var result = from accidentLocation in _context.accident_location
             //     join address in _context.address on accidentLocation.address_id equals address.address_id
             //     where address.state == state
             //     select accidentLocation.id, accidentLocation.start_lat, accidentLocation.start_lng, accidentLocation.distance;
 
-            return await _context.accident_location.ToListAsync();
+            var accidentLocation = _context.accident_location;
+            var address = _context.address;
+
+            return accidentLocation.Join(address, al => al.address_id, a => a.address_id, (al, a) => new { al, a } )
+                .Select(x => new {
+                    id = x.al.id,
+                    start_lat = x.al.start_lat,
+                    start_lng = x.al.start_lng,
+                    distance = x.al.distance,
+                    state = x.a.state
+                })
+                .Where(y => y.state == state)
+                .Select(m => new AccidentDimensionModel {
+                    ID = m.id,
+                    Start_Lat = m.start_lat,
+                    Start_Lng = m.start_lng,
+                    Distance = m.distance
+                })
+                .ToList();
         }
-    
     }
 }

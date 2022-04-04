@@ -6,6 +6,6 @@ namespace WebAPI.Repositories
 {
     public interface IAccidentLocationRepository
     {
-        Task<IEnumerable<AccidentLocation>> GetAccidents();
+        Task<IEnumerable<AccidentLocation>> GetAccidents(string state);
     }
 }

@@ -22,10 +22,10 @@ namespace WebAPI.Controllers
             _accidentLocRepository = accidentLocRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<AccidentLocation>>> GetAccidentLocation()
+        [HttpGet("{state}")]
+        public async Task<ActionResult<IEnumerable<AccidentLocation>>> GetAccidentLocation(string state)
         {
-            var accident = await _accidentLocRepository.GetAccidents();
+            var accident = await _accidentLocRepository.GetAccidents(state);
 
             return Ok(accident);
         }

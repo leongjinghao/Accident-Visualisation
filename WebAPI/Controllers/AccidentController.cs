@@ -20,10 +20,10 @@ namespace WebAPI.Controllers
             _accidentRepository = accidentRepository;
 
         }
-        [HttpGet("StartHour")]
+        [HttpGet("StartHourCount")]
         public async Task<ActionResult<IEnumerable<Accident>>> GetStartHourFrequency()
         {      
-            var address = await _accidentRepository.GetStartHourCount();
+            var address = await _accidentRepository.GetStartHourFreq();
 
             return Ok(address);
         }

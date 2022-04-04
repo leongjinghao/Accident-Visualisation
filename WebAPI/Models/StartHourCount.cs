@@ -4,7 +4,7 @@ namespace WebAPI.Models
 {
     public class StartHourCountModel
     {
-        public string? start_time { get; set; }
-        //public int count { get; set; }
+        public int hour { get; set; }
+        public int count { get; set; }
     }
 }

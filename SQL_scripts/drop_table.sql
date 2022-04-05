@@ -1,9 +1,9 @@
-DROP TABLE Accident;
-
-DROP TABLE Weather;
-
-DROP TABLE Location_Property;
+DROP TABLE Accident_Location;
 
 DROP TABLE Address;
 
-DROP TABLE Accident_Location;
+DROP TABLE Location_Property;
+
+DROP TABLE Weather;
+
+DROP TABLE Accident;

@@ -2,3 +2,8 @@
 US_Accidents_Dec20_updated.csv
 .idea
 US_Accidents_Dec21_updated.csv
+WebAPI/bin
+WebAPI/obj
+Frontend/node_modules
+WebAPI/appsettings.json
+WebAPI/appsettings.json

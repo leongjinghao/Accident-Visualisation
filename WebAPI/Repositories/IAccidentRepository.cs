@@ -8,5 +8,7 @@ namespace WebAPI.Repositories
     public interface IAccidentRepository
     {
         Task<List<StartHourCountModel>> GetStartHourFreq();
+
+        Task<List<MultipleModel>> GetMany(string id);
     }
 }

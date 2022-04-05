@@ -12,7 +12,7 @@ namespace WebAPI.Models
         public double? humidity { get; set; }
         public double? pressure { get; set; }
         public double? visibility { get; set; }
-        public double? wind_direction { get; set; }
+        public string? wind_direction { get; set; }
         public double? wind_speed { get; set; }
         public double? precipitation { get; set; }
         public string? weather_condition { get; set; }

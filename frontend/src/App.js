@@ -9,7 +9,7 @@ import AccidentDetails from "./AccidentDetails";
 import LocationDetails from "./LocationDetails";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import HomeIcon from "@mui/icons-material/Home";
-import AddAlertIcon from "@mui/icons-material/AddAlert";
+import ForumIcon from "@mui/icons-material/Forum";
 import "./style.css";
 import ReportForm from "./ReportForm";
 function App() {
@@ -46,7 +46,7 @@ function App() {
           <div className="sidebarbutton">
             {marker != "none" && (
               <Button onClick={handleClickOpen} sx={{ color: "#ed7d31" }}>
-                <AddAlertIcon sx={{ marginRight: "10px" }} />
+                <ForumIcon sx={{ marginRight: "10px" }} />
                 Provide Feedback
               </Button>
             )}
@@ -91,7 +91,7 @@ function App() {
                   backgroundColor: "#fffaf7",
                 }}
               >
-                {marker === "none" ? <TimeLineChart /> : ""}
+                {marker === "none" ? <TimeLineChart state={state} /> : ""}
               </Paper>
             ) : (
               <AccidentDetails accident={marker} state={state} />

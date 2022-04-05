@@ -30,5 +30,15 @@ namespace WebAPI.Controllers
             await _accidentRemarkRepository.Add(accidentRemark);
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AccidentRemarkModel>> GetRemark(string id)
+        {
+            var remark = await _accidentRemarkRepository.Get(id);
+            if (remark == null)
+                return NotFound();
+            
+            return Ok(remark);
+        }
     }
 }

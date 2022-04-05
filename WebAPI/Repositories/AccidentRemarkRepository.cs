@@ -24,5 +24,11 @@ namespace WebAPI.Repositories
             _context.accident_remark.Add(accidentRemark);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<AccidentRemarkModel> Get(string id)
+        {
+            var result = await _context.accident_remark.FindAsync(id);
+            return new AccidentRemarkModel { remark = result.remark} ;
+        }
     }
 }

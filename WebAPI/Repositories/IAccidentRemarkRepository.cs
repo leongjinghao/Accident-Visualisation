@@ -8,5 +8,6 @@ namespace WebAPI.Repositories
     public interface IAccidentRemarkRepository
     {
         Task Add(AccidentRemark accidentRemark);
+        Task<AccidentRemarkModel> Get(string id);
     }
 }

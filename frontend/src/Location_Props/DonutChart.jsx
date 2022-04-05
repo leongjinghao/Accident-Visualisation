@@ -15,7 +15,7 @@ const CustomLabel = ({ viewBox, type, data }) => {
     } else if (type == "Pressure") {
       xvalue = 48;
     } else if (type == "Precipitation") {
-      xvalue = 10;
+      xvalue = 5;
       xtext = 43;
     }
   }
@@ -30,11 +30,13 @@ const CustomLabel = ({ viewBox, type, data }) => {
             fontFamily: "Roboto",
           }}
         >
-          {type == "Temperature"
-            ? `${data}F`
-            : type == "Pressure"
-            ? `${data}in`
-            : `${data}%`}
+          {data
+            ? type == "Temperature"
+              ? `${data}F`
+              : type == "Pressure"
+              ? `${data}in`
+              : `${data}%`
+            : "-"}
         </tspan>
       </text>
       <text x={cx - xtext} y={cy + 25}>
@@ -54,19 +56,11 @@ export default function DonutChart({ type, data }) {
   const [pieData, setPieData] = useState([]);
 
   useEffect(() => {
-    // if (type == "Temperature"){
-    //   setPieData([
-    //     { name: "Group A", value: data },
-    //     { name: "Group B", value: 100 - data },
-    //   ])
-    // }
-    // else{
     setPieData([
       { name: "Group A", value: data },
       { name: "Group B", value: 100 - data },
     ]);
-    //}
-  }, []);
+  }, [data]);
 
   return (
     <div
@@ -77,7 +71,6 @@ export default function DonutChart({ type, data }) {
         height: "24vh",
       }}
     >
-      {console.log(pieData)}
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie

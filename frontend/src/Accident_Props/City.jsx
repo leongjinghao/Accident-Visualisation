@@ -3,7 +3,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { info } from "../all";
 import "../style.css";
-export default function City() {
+export default function City({ data }) {
   const breadcrumbs = [
     <span
       style={{
@@ -12,7 +12,7 @@ export default function City() {
       key="1"
       color="inherit"
     >
-      {info[0].State}
+      {data[0]}
     </span>,
     <span
       style={{
@@ -21,7 +21,7 @@ export default function City() {
       key="2"
       color="inherit"
     >
-      {info[0].County}
+      {data[1]}
     </span>,
     <span
       style={{
@@ -31,7 +31,7 @@ export default function City() {
       }}
       key="3"
     >
-      {info[0].City}
+      {data[2]}
     </span>,
   ];
 

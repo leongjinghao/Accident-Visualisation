@@ -21,7 +21,7 @@ const CLICKED = icon({
   iconSize: [32, 32],
 });
 
-function Markers({ data, returnMarker }) {
+function Markers({ data, returnMarker, center, zoom }) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const map = useMap();
@@ -37,7 +37,9 @@ function Markers({ data, returnMarker }) {
         position={[dat.start_Lat, dat.start_Lng]}
         eventHandlers={{
           click: () => {
-            map.setView([dat.start_Lat, dat.start_Lng], 14);
+            // map.setView([dat.start_Lat, dat.start_Lng], 14);
+            center([dat.start_Lat, dat.start_Lng]);
+            zoom(14);
             setSelectedIndex(index);
             returnMarker(dat.id);
           },
@@ -63,6 +65,7 @@ export default function StreetMap(props) {
   const fetchUrl = `https://localhost:5001/AccidentLocation/${props.state}`;
   const [data, setData] = useState([]);
   const [center, setCenter] = useState([40, -80]);
+  const [zoom, setZoom] = useState(8);
   async function getData() {
     const info = await axios.get(fetchUrl).then((res) => {
       return res.data;
@@ -74,19 +77,25 @@ export default function StreetMap(props) {
   useEffect(() => {
     getData();
   }, []);
-  function ChangeView({ center }) {
+  function ChangeView({ center, zoom }) {
     const map = useMap();
-    map.setView(center);
+
+    map.setView(center, zoom);
     return null;
   }
   return (
-    <MapContainer center={center} zoom={8} scrollWheelZoom={true}>
-      <ChangeView center={center} />
+    <MapContainer center={center} zoom={zoom} scrollWheelZoom={true}>
+      <ChangeView center={center} zoom={zoom} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Markers data={data} returnMarker={(value) => props.viewMarker(value)} />
+      <Markers
+        data={data}
+        returnMarker={(value) => props.viewMarker(value)}
+        center={(value) => setCenter(value)}
+        zoom={(value) => setZoom(value)}
+      />
     </MapContainer>
   );
 }

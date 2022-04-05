@@ -8,7 +8,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import stateData from "./data.json";
 
 export default function CountBarChart(props) {
   const [data, setData] = useState([]);
@@ -27,7 +26,6 @@ export default function CountBarChart(props) {
       return res.data;
     });
     setData(info);
-    console.log("hi");
   }
 
   useEffect(() => {

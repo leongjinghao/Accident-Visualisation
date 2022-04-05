@@ -22,13 +22,13 @@ export default function StateMap(props) {
   };
 
   function color(number) {
-    if (number < 50) {
+    if (number < 10) {
       return "#D9BF4E";
-    } else if (number < 300) {
+    } else if (number < 30) {
       return "#CCAA14";
-    } else if (number < 1000) {
+    } else if (number < 100) {
       return "#DD9423";
-    } else if (number < 5000) {
+    } else if (number < 500) {
       return "#e18f27";
     }
     return "#ED7D31";

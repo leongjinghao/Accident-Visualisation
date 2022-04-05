@@ -92,7 +92,7 @@ function App() {
                 {marker === "none" ? <TimeLineChart /> : ""}
               </Paper>
             ) : (
-              <AccidentDetails />
+              <AccidentDetails accident={marker} state={state} />
             )}
           </div>
         </div>
@@ -112,7 +112,7 @@ function App() {
               <CountBarChart state={state} />
             </Paper>
           ) : (
-            <LocationDetails />
+            <LocationDetails accident={marker} />
           )}
         </div>
       </div>

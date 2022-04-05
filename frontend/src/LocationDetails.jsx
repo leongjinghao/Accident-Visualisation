@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Paper } from "@mui/material";
 import AirIcon from "@mui/icons-material/Air";
 import DonutChart from "./Location_Props/DonutChart";
@@ -13,7 +14,20 @@ import ColorChips from "./BooleanProperties";
 //From Weather Table: Humidity, Temperature, Pressure, Precipitation, Wind Chill, Wind Speed, Wind Direction, Visibility
 //From Location_Property Table: All the boolean data.
 
-export default function LocationDetails() {
+export default function LocationDetails({ accident }) {
+  const [data, setData] = useState([]);
+  async function getData() {
+    var url = `https://localhost:5001/Accident/${accident}`;
+    const info = await axios.get(url).then((res) => {
+      return res.data;
+    });
+    setData(info[0]);
+    console.log(info[0]);
+  }
+
+  useEffect(() => {
+    getData();
+  }, [accident]);
   return (
     <Paper
       elevation={5}
@@ -34,36 +48,42 @@ export default function LocationDetails() {
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <DonutChart data={info[0].Humidity} type="Humidity" />
-            <DonutChart data={info[0].Temperature} type="Temperature" />
+            <DonutChart data={data.humidity} type="Humidity" />
+            <DonutChart data={data.temperature} type="Temperature" />
             <div className="box2">
               <AirIcon style={{ fontSize: 50 }} />
               Wind Speed
-              <span className="textStyle">58</span>
+              <span className="textStyle">
+                {data.wind_speed}
+                {"km/h"}
+              </span>
             </div>
             <div className="box2" style={{ marginLeft: "3vw" }}>
               <ExploreIcon style={{ fontSize: 50 }} />
               Wind Direction
-              <span className="textStyle">SW</span>
+              <span className="textStyle">{data.wind_direction}</span>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <DonutChart data={info[0].Pressure} type="Pressure" />
-            <DonutChart data={info[0].Precipitation} type="Precipitation" />
+            <DonutChart data={data.pressure} type="Pressure" />
+            <DonutChart data={data.precipitation} type="Precipitation" />
             <div className="box2">
               <VisibilityIcon style={{ fontSize: 50 }} />
               Visibility
-              <span className="textStyle">10</span>
+              <span className="textStyle">{data.visibility}</span>
             </div>
             <div className="box2" style={{ marginLeft: "3vw" }}>
               <AcUnitIcon style={{ fontSize: 50 }} />
               Wind Chill
-              <span className="textStyle">SW</span>
+              <span className="textStyle">
+                {data.wind_chill}
+                {"F"}
+              </span>
             </div>
           </div>
         </div>
         <div style={{ marginRight: "2vw" }}>
-          <ColorChips />
+          <ColorChips data={data} />
         </div>
       </div>
     </Paper>

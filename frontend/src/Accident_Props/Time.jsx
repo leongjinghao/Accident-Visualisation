@@ -1,18 +1,17 @@
-import React from "react";
-import { info } from "../all";
+import React, { useState, useEffect } from "react";
 import Slider from "@mui/material/Slider";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import "../style.css";
-const date = new Date(info[0].Start_Time);
 
-export default function Time() {
-  const [value, setValue] = React.useState([2, 7]);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+export default function Time({ data }) {
+  if (data != "") {
+    var comp = true;
+  } else {
+    var comp = null;
+  }
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <span className="textDetails">Date:</span>{" "}
+      <span className="textDetails">Date:</span>
       <span
         style={{
           color: "#004753",
@@ -20,7 +19,7 @@ export default function Time() {
           fontSize: "22px",
         }}
       >
-        {format(new Date(info[0].Start_Time), "dd/MM/yyyy")}
+        {comp && format(data[0], "dd/MM/yyyy")}
       </span>
       <div style={{ display: "flex", alignItems: "flex-end" }}>
         <div
@@ -38,13 +37,12 @@ export default function Time() {
               fontSize: "22px",
             }}
           >
-            {format(new Date(info[0].Start_Time), "HHmm")}
+            {comp && format(data[0], "HHmm")}
             {" Hrs"}
           </span>
         </div>
         <Slider
-          value={value}
-          onChange={handleChange}
+          value={comp && [format(data[0], "H"), format(data[1], "H")]}
           disabled
           min={0}
           max={24}
@@ -65,7 +63,7 @@ export default function Time() {
               fontSize: "22px",
             }}
           >
-            {format(new Date(info[0].End_Time), "HHmm")}
+            {comp && format(data[1], "HHmm")}
             {" Hrs"}
           </span>
         </div>

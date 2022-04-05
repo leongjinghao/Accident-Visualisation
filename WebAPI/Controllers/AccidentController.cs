@@ -27,5 +27,13 @@ namespace WebAPI.Controllers
 
             return Ok(address);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<Accident>>> GetMultiple(string id)
+        {
+            var multiple = await _accidentRepository.GetMany(id);
+
+            return Ok(multiple);
+        }
     }
 }

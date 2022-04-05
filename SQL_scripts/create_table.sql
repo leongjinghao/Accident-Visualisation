@@ -71,3 +71,11 @@ CREATE TABLE IF NOT EXISTS Accident_Location(
 	FOREIGN KEY (ID) REFERENCES Accident(ID),
  	FOREIGN KEY (Address_ID) REFERENCES Address(Address_ID)
 );
+
+CREATE TABLE IF NOT EXISTS Accident_Remark(
+ 	ID varchar(10),
+	Remark varchar(200),
+	PRIMARY KEY (ID),
+	FOREIGN KEY (ID) REFERENCES Accident(ID)
+);
+	

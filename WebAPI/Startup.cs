@@ -40,6 +40,7 @@ namespace WebAPI
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAccidentLocationRepository, AccidentLocationRepository>();
             services.AddScoped<IAccidentRepository, AccidentRepository>();
+            services.AddScoped<IAccidentRemarkRepository, AccidentRemarkRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -15,5 +15,6 @@ namespace WebAPI.Data
         public DbSet<Address> address { get; init; }
         public DbSet<LocationProperty> location_property { get; init; }
         public DbSet<Weather> weather { get; init; }
+        public DbSet<AccidentRemark> accident_remark { get; init; }
     }
 }

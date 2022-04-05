@@ -12,6 +12,7 @@ namespace WebAPI.Data
         DbSet<Address> address { get; init; }
         DbSet<LocationProperty> location_property { get; init; }
         DbSet<Weather> weather { get; init; }
+        DbSet<AccidentRemark> accident_remark { get; init; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

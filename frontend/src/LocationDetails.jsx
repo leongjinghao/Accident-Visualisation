@@ -3,7 +3,6 @@ import axios from "axios";
 import { Paper } from "@mui/material";
 import AirIcon from "@mui/icons-material/Air";
 import DonutChart from "./Location_Props/DonutChart";
-import { info } from "./all";
 import "./style.css";
 import ExploreIcon from "@mui/icons-material/Explore";
 import VisibilityIcon from "@mui/icons-material/Visibility";

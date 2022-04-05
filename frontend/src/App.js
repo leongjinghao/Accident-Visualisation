@@ -42,12 +42,14 @@ function App() {
             </Button>
           </div>
 
-          <ReportForm open={open} close={handleClose} />
+          <ReportForm open={open} close={handleClose} accident={marker} />
           <div className="sidebarbutton">
-            <Button onClick={handleClickOpen} sx={{ color: "#ed7d31" }}>
-              <AddAlertIcon sx={{ marginRight: "10px" }} />
-              Report an Accident
-            </Button>
+            {marker != "none" && (
+              <Button onClick={handleClickOpen} sx={{ color: "#ed7d31" }}>
+                <AddAlertIcon sx={{ marginRight: "10px" }} />
+                Provide Feedback
+              </Button>
+            )}
           </div>
         </div>
         <div className="sidebarbottom">

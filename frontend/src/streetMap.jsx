@@ -23,8 +23,6 @@ const CLICKED = icon({
 
 function Markers({ data, returnMarker, center, zoom }) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
-  const map = useMap();
   function getMarkerIcon(index) {
     if (index === selectedIndex) return CLICKED;
     return ICON;
@@ -47,7 +45,7 @@ function Markers({ data, returnMarker, center, zoom }) {
         which={dat.id}
       >
         <Popup>Accident Radius: {dat.distance}km</Popup>
-        {index == selectedIndex && (
+        {index === selectedIndex && (
           <Circle
             center={[dat.start_Lat, dat.start_Lng]}
             fillColor="blue"

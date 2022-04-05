@@ -8,17 +8,17 @@ const CustomLabel = ({ viewBox, type, data }) => {
   const { cx, cy } = viewBox;
   var xvalue = 20;
   var xtext = 30;
-  {
-    if (type == "Temperature") {
-      xvalue = 35;
-      xtext = 45;
-    } else if (type == "Pressure") {
-      xvalue = 48;
-    } else if (type == "Precipitation") {
-      xvalue = 5;
-      xtext = 43;
-    }
+
+  if (type === "Temperature") {
+    xvalue = 35;
+    xtext = 45;
+  } else if (type === "Pressure") {
+    xvalue = 48;
+  } else if (type === "Precipitation") {
+    xvalue = 5;
+    xtext = 43;
   }
+
   return (
     <React.Fragment>
       <text x={cx - xvalue} y={cy}>
@@ -31,9 +31,9 @@ const CustomLabel = ({ viewBox, type, data }) => {
           }}
         >
           {data
-            ? type == "Temperature"
+            ? type === "Temperature"
               ? `${data}F`
-              : type == "Pressure"
+              : type === "Pressure"
               ? `${data}in`
               : `${data}%`
             : "-"}

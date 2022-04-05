@@ -11,17 +11,18 @@ export default function ReportForm(props) {
   return (
     <div>
       <Dialog open={props.open}>
-        <DialogTitle>Report an Accident</DialogTitle>
+        <DialogTitle>Provide Feedback</DialogTitle>
         <DialogContent>
+          <DialogContentText>Accident ID: {props.accident}</DialogContentText>
           <DialogContentText>
-            To report an accident, please enter the details accordingly and
+            To provide feedback, please enter the form accordingly and
             accurately. We will send updates occasionally.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Zipcode"
+            label="Feedback"
             type="email"
             fullWidth
             variant="standard"

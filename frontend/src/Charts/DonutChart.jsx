@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Label, Cell, ResponsiveContainer } from "recharts";
 
-//dont need any data
 const COLORS = ["#004753", "#bdbdbd"];
 
 const CustomLabel = ({ viewBox, type, data }) => {

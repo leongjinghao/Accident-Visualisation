@@ -1,11 +1,10 @@
 import { Paper } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SeverityScale from "./Accident_Props/SeverityScale";
-import City from "./Accident_Props/City";
-import Time from "./Accident_Props/Time";
-import Street from "./Accident_Props/Street";
-import { info } from "./all";
+import SeverityScale from "../Components/SeverityScale";
+import City from "../Components/City";
+import Time from "../Components/Time";
+import Street from "../Components/Street";
 
 export default function AccidentDetails({ accident, state }) {
   const [data, setData] = useState([]);

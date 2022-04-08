@@ -1,17 +1,17 @@
 import { Button, Paper } from "@mui/material";
 import React, { useState } from "react";
-import StateMap from "./StateMap";
-import StreetMap from "./streetMap";
-import TimeLineChart from "./TimeLineChart";
-import CountBarChart from "./CountBarChart";
+import StateMap from "./Views/StateMap";
+import StreetMap from "./Views/streetMap";
+import TimeLineChart from "./Charts/TimeLineChart";
+import CountBarChart from "./Charts/CountBarChart";
 import "@fontsource/roboto/400.css";
-import AccidentDetails from "./AccidentDetails";
-import LocationDetails from "./LocationDetails";
+import AccidentDetails from "./Views/AccidentDetails";
+import LocationDetails from "./Views/LocationDetails";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import HomeIcon from "@mui/icons-material/Home";
 import ForumIcon from "@mui/icons-material/Forum";
 import "./style.css";
-import ReportForm from "./ReportForm";
+import ReportForm from "./Components/ReportForm";
 function App() {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState("none");

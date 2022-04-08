@@ -8,7 +8,7 @@ import {
   Circle,
 } from "react-leaflet";
 import { icon } from "leaflet";
-import "./style.css";
+import "../style.css";
 import axios from "axios";
 
 const ICON = icon({
@@ -35,7 +35,6 @@ function Markers({ data, returnMarker, center, zoom }) {
         position={[dat.start_Lat, dat.start_Lng]}
         eventHandlers={{
           click: () => {
-            // map.setView([dat.start_Lat, dat.start_Lng], 14);
             center([dat.start_Lat, dat.start_Lng]);
             zoom(14);
             setSelectedIndex(index);
@@ -58,8 +57,6 @@ function Markers({ data, returnMarker, center, zoom }) {
 }
 
 export default function StreetMap(props) {
-  // var arr = jsondata.find((data) => data.State === props.state);
-  // const [data, setData] = useState(jsondata);
   const fetchUrl = `https://localhost:5001/AccidentLocation/${props.state}`;
   const [data, setData] = useState([]);
   const [center, setCenter] = useState([40, -80]);

@@ -1,5 +1,4 @@
 import React from "react";
-import { info } from "../all";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import "../style.css";

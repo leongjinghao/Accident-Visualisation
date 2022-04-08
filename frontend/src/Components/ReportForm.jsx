@@ -9,7 +9,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 export default function ReportForm(props) {
-  const [data, setData] = useState([]);
   const [feedback, setFeedback] = useState({
     id: "",
     remark: "",

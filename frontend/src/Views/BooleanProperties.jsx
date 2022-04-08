@@ -1,7 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/system";
 import { useSwitch } from "@mui/base/SwitchUnstyled";
-import "./style.css";
+import "../style.css";
 import Tooltip from "@mui/material/Tooltip";
 
 const info = [

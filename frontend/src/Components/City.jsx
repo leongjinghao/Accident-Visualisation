@@ -1,7 +1,6 @@
 import React from "react";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { info } from "../all";
 import "../style.css";
 export default function City({ data }) {
   const breadcrumbs = [

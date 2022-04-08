@@ -2,16 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Paper } from "@mui/material";
 import AirIcon from "@mui/icons-material/Air";
-import DonutChart from "./Location_Props/DonutChart";
-import "./style.css";
+import DonutChart from "../Charts/DonutChart";
+import "../style.css";
 import ExploreIcon from "@mui/icons-material/Explore";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import ColorChips from "./BooleanProperties";
-
-//Data needed
-//From Weather Table: Humidity, Temperature, Pressure, Precipitation, Wind Chill, Wind Speed, Wind Direction, Visibility
-//From Location_Property Table: All the boolean data.
 
 export default function LocationDetails({ accident }) {
   const [data, setData] = useState([]);

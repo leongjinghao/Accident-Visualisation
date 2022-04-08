@@ -28,18 +28,7 @@ export default function ReportForm(props) {
     console.log(e);
     setFeedback({ id: props.accident, remark: e });
   }
-  // async function getData() {
-  //   var url = `https://localhost:5001/Accident/${accident}`;
-  //   const info = await axios.post(url).then((res) => {
-  //     return res.data;
-  //   });
-  //   setData(info[0]);
-  //   console.log(info[0]);
-  // }
 
-  // useEffect(() => {
-  //   getData();
-  // }, [accident]);
   return (
     <div>
       <Dialog open={props.open}>

@@ -1,3 +1,4 @@
+-- Accident table create function
 CREATE TABLE IF NOT EXISTS Accident(
 	ID varchar(10) NOT NULL,
 	Severity INT,
@@ -7,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Accident(
 	PRIMARY KEY(ID)
 );
 
+-- Weather table create function
 CREATE TABLE IF NOT EXISTS Weather(
  	Weather_ID INT,
  	Weather_Timestamp varchar(100),
@@ -22,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Weather(
  	PRIMARY KEY(Weather_ID)
 );
 
+-- Location Property table create function
 CREATE TABLE IF NOT EXISTS Location_Property(
  	Location_Property_ID INT,
  	Amenity Boolean NOT NULL,
@@ -40,6 +43,7 @@ CREATE TABLE IF NOT EXISTS Location_Property(
  	PRIMARY KEY(Location_Property_ID)
 );
 
+-- Address table create function
 CREATE TABLE IF NOT EXISTS Address(
  	Address_ID INT,
  	Number  float,
@@ -59,6 +63,7 @@ CREATE TABLE IF NOT EXISTS Address(
  	FOREIGN KEY (Location_Property_ID) REFERENCES Location_Property(Location_Property_ID)
  );
 
+-- Accident Location table create function
 CREATE TABLE IF NOT EXISTS Accident_Location(
  	ID varchar(10),
  	Start_lat float,
@@ -72,6 +77,7 @@ CREATE TABLE IF NOT EXISTS Accident_Location(
  	FOREIGN KEY (Address_ID) REFERENCES Address(Address_ID)
 );
 
+-- Accident Remark table create function
 CREATE TABLE IF NOT EXISTS Accident_Remark(
  	ID varchar(10),
 	Remark varchar(200),

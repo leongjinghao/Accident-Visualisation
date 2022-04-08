@@ -16,12 +16,8 @@ namespace WebAPI.Repositories
 
         }
 
-        public async Task<List<AccidentDimensionModel>> GetAccidents(string state){
-            // var result = from accidentLocation in _context.accident_location
-            //     join address in _context.address on accidentLocation.address_id equals address.address_id
-            //     where address.state == state
-            //     select accidentLocation.id, accidentLocation.start_lat, accidentLocation.start_lng, accidentLocation.distance;
-
+        public async Task<List<AccidentDimensionModel>> GetAccidents(string state)
+        {
             var accidentLocation = _context.accident_location;
             var address = _context.address;
 
